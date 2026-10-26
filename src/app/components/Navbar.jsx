@@ -1,11 +1,11 @@
 
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Navbar = () => {
+const NavbarContent = () => {
   const pathname = usePathname();
 
   const isWorkoutsActive =
@@ -143,6 +143,16 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+
+
+const Navbar = () => {
+  return (
+    <Suspense fallback={<div className="min-h-[82px] border-b border-[#25262c] bg-[#0b0c0e]" />}>
+      <NavbarContent></NavbarContent>
+    </Suspense>
   );
 };
 

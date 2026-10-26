@@ -1,9 +1,9 @@
 
-import React from "react";
+import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import WorkoutActions from "./WorkoutActions";
 
-const FitlogDetailsPage = async ({ params }) => {
+const FitlogDetails = async ({ params }) => {
   // Next.js App Router: params is asynchronous in Next.js 15+
   const { fitid } = await params;
 
@@ -166,4 +166,10 @@ const FitlogDetailsPage = async ({ params }) => {
   );
 };
 
-export default FitlogDetailsPage;
+export default function FitlogDetailsPage({params}){
+  return(
+    <Suspense fallback={<p>Loading ....</p>}>
+        <FitlogDetails params = {params}></FitlogDetails>
+    </Suspense>
+  );
+}
